@@ -27,29 +27,31 @@ defmodule AdventOfCode.Y2015.Day1 do
   def to_basement(" "), do: {:error, :invalid}
 
   def to_basement(instructions) when is_binary(instructions) do
-    pos = 0
-
     result =
       instructions
       |> String.graphemes()
-      |> Enum.reduce_while(0, fn x, acc ->
+      |> Enum.reduce_while(%{cur: 0, pos: 0}, fn x, acc ->
         cond do
-          pos == -1 ->
+          acc.cur == -1 ->
             {:halt, acc}
 
-          pos > -1 ->
+          acc.cur > -1 ->
             case x do
               "(" ->
-                pos = pos + 1
-                {:cont, acc + 1}
+                pos = acc.pos + 1
+                cur = acc.cur + 1
+                acc = %{acc | pos: pos, cur: cur}
+                {:cont, acc}
 
               ")" ->
-                pos = pos - 1
-                {:cont, acc + 1}
+                pos = acc.pos + 1
+                cur = acc.cur - 1
+                acc = %{acc | pos: pos, cur: cur}
+                {:cont, acc}
             end
         end
       end)
 
-    {:ok, result}
+    {:ok, result.pos}
   end
 end
