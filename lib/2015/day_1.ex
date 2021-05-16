@@ -3,6 +3,7 @@ defmodule AdventOfCode.Y2015.Day1 do
   Problem Link: https://adventofcode.com/2015/day/1
   """
 
+  @spec floor(binary) :: {:error, :invalid} | {:ok, any}
   def floor(""), do: {:error, :invalid}
   def floor(" "), do: {:error, :invalid}
 
