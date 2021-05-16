@@ -6,7 +6,7 @@ defmodule AdventOfCode.Y2015.Day1 do
   def floor(""), do: {:error, :invalid}
   def floor(" "), do: {:error, :invalid}
 
-  def floor(instructions) do
+  def floor(instructions) when is_binary(instructions) do
     {:ok, do_floor(instructions, 0)}
   end
 
