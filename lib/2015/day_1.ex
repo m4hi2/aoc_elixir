@@ -7,10 +7,17 @@ defmodule AdventOfCode.Y2015.Day1 do
   def floor(" "), do: {:error, :invalid}
 
   def floor(instructions) when is_binary(instructions) do
-    {:ok, do_floor(instructions, 0)}
-  end
+    result =
+      instructions
+      |> String.graphemes()
+      |> Enum.reduce_while(0, fn x, acc ->
+        case x do
+          "(" -> {:cont, acc + 1}
+          ")" -> {:cont, acc - 1}
+          _ -> {:halt, acc}
+        end
+      end)
 
-  defp do_floor("", cur), do: cur
-  defp do_floor("(" <> rst, cur), do: do_floor(rst, cur + 1)
-  defp do_floor(")" <> rst, cur), do: do_floor(rst, cur - 1)
+    {:ok, result}
+  end
 end
