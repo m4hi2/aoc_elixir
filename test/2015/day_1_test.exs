@@ -39,6 +39,10 @@ defmodule AdventOfCode.Y2015.Day1Test do
       assert Solution.to_basement("()())") == {:ok, 5}
     end
 
+    test "checking for extra parenthesis after entering the basement" do
+      assert Solution.to_basement("()())()") == {:ok, 5}
+    end
+
     test "empty input should return an error" do
       assert Solution.to_basement("") == {:error, :invalid}
       assert Solution.to_basement(" ") == {:error, :invalid}
