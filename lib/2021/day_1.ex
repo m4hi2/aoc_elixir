@@ -17,6 +17,13 @@ defmodule AdventOfCode.Y2021.Day1 do
     |> find_increment()
   end
 
+  def solve_part2(depths) do
+    depths
+    |> String.split()
+    |> Enum.map(&String.to_integer(&1))
+    |> get_sum_of_3()
+    |> find_increment()
+  end
   defp find_increment(list) do
     [h | t] = list
     find_increment(h, t, 0)
@@ -32,4 +39,10 @@ defmodule AdventOfCode.Y2021.Day1 do
       _ -> find_increment(next, rest, acc)
     end
   end
+  defp get_sum_of_3(depths) do
+    depths
+    |> Enum.chunk_every(3, 1)
+    |> Enum.map(&Enum.sum/1)
+  end
+
 end
