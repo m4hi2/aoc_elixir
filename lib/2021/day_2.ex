@@ -3,6 +3,8 @@ defmodule AdventOfCode.Y2021.Day2 do
   Problem Link: https://adventofcode.com/2021/day/2
   """
 
+  def run_1, do: load_file() |> solve_1()
+
   def solve_1(commands) do
     commands
     |> process_input()
@@ -21,4 +23,11 @@ defmodule AdventOfCode.Y2021.Day2 do
   def calc_pos([["forward", n] | tail], depth, h_pos), do: calc_pos(tail, depth, h_pos + n)
   def calc_pos([["up", n] | tail], depth, h_pos), do: calc_pos(tail, depth - n, h_pos)
   def calc_pos([["down", n] | tail], depth, h_pos), do: calc_pos(tail, depth + n, h_pos)
+
+
+    defp load_file do
+    file_path = Path.join(:code.priv_dir(:advent_of_code), "2021/day_2.txt")
+    {:ok, file} = File.read(file_path)
+    file
+  end
 end
