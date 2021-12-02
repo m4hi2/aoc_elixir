@@ -20,5 +20,9 @@ defmodule AdventOfCode.Y2021.Day1Test do
     test "increased by 7" do
       assert Solution.solve_part1(@sample_input) == {:ok, 7}
     end
+
+    test "increased by 5" do
+      assert Solution.solve_part2(@sample_input) == {:ok, 5}
+    end
   end
 end
