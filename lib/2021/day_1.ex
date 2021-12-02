@@ -14,10 +14,10 @@ defmodule AdventOfCode.Y2021.Day1 do
     depths
     |> String.split()
     |> Enum.map(&String.to_integer(&1))
-    |> find_increment(0)
+    |> find_increment()
   end
 
-  defp find_increment(list, 0) do
+  defp find_increment(list) do
     [h | t] = list
     find_increment(h, t, 0)
   end
