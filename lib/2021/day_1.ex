@@ -1,4 +1,7 @@
 defmodule AdventOfCode.Y2021.Day1 do
+  @moduledoc """
+  Problem Link: https://adventofcode.com/2021/day/1
+  """
   def run_part1 do
     file_path = Path.join(:code.priv_dir(:advent_of_code), "2021/day_1.txt")
     {:ok, file} = File.read(file_path)
